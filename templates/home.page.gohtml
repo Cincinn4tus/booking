@@ -1,0 +1,41 @@
+{{template "base" .}}
+
+{{define "css"}}
+    <link rel="stylesheet" href="/static/css/home.css">
+{{end}}
+
+{{define "content"}}
+    <div id="main">
+        <div class="white-wrapper">
+            <h1 class="row">
+                Venez découvrir nos évènements
+            </h1>
+
+            <p>
+                Développement web, Retours d'expérience, Conférences, Ateliers, Formations, etc.
+            </p>
+
+            <a class="row btn btn-primary btn-lg" id="btn-reserve" href="/events">
+                Évènements à venir
+            </a>
+        </div>
+    </div>
+
+    <div class="container mt-5 row" id="offers">
+        <section class="col-lg-6">
+            <img src="/static/images/restaurant.webp" alt="restauration sur place" width="100%">
+        </section>
+
+        <section class="col-lg-6">
+            <h2 class="mb-5 mt-5">Restauration sur place</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consequat
+                consectetur, nisl nunc ultrices nunc, quis aliquam nunc nisl vitae nunc. Donec euismod, nisl
+                eget consequat consectetur, nisl nunc ultrices nunc, quis aliquam nunc nisl vitae nunc.
+            </p>
+
+            <img src="/static/images/cookmaster.webp" class="justify-center" alt="Chef étoilé" width="144px">
+        </section>
+
+    </div>
+{{end}}

@@ -1,0 +1,10 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <h2>Liste des salles</h2>
+    <ul>
+        {{range .}}
+            <li>{{.RoomName}} - {{.RoomDescription}} - {{.RoomID}}</li>
+        {{end}}
+    </ul>
+{{end}}
