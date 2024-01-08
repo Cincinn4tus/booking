@@ -10,15 +10,15 @@
     </h1>
 
     {{if .Message}}
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success text-center" role="alert">
             {{.Message}}
         </div>
     {{end}}
 
 
     <div class="container mt-5">
-        <form action="" method="post" class="col-4 mx-auto mt-5" id="login-form">
-            <!-- login and password inputs -->
+        <form action="/submit" method="post" class="col-4 mx-auto mt-5" id="login-form">
+            <input type="hidden" id="formName" name="formName" value="login">
             <div class="form-group">
                 <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" class="form-control" {{if .Email}} value="{{.Email}}" {{end}}>
             </div>
