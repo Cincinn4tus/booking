@@ -1,0 +1,32 @@
+{{template "base" .}}
+
+{{define "css"}}
+    <link rel="stylesheet" href="/static/css/login.css">
+{{end}}
+
+{{define "content"}}
+    <h1 class="mt-5">
+        <img alt="golang mascotte calendrier" src="/static/images/gobook.webp" width="200px">
+    </h1>
+
+    {{if .Message}}
+        <div class="alert alert-danger" role="alert">
+            {{.Message}}
+        </div>
+    {{end}}
+
+    <div class="container mt-5">
+        <form action="/submit" method="post" class="col-4 mx-auto mt-5" id="register">
+            <input type="hidden" id="formName" name="formName" value="register">
+            <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" required="required" {{if .Firstname}} value="{{.Firstname }}" {{end}}><br>
+
+            <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Nom" required="required" {{if .Lastname}} value="{{.Lastname }}" {{end}}><br>
+
+            <input class="form-control" type="email" id="email" name="email" placeholder="Adresse email" required="required"><br>
+
+            <input class="form-control" type="password" id="password" name="password" placeholder="Mot de passe" required="required" {{if .Password}} value="{{.Password }}" {{end}}><br>
+
+            <input class="btn btn-primary" type="submit" value="S'inscrire">
+        </form>
+    </div>
+{{end}}

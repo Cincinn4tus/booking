@@ -40,3 +40,12 @@ func Events(w http.ResponseWriter, r *http.Request) {
 	}
 	render.RenderData(w, "events.page.gohtml", events)
 }
+
+func Register(w http.ResponseWriter, r *http.Request) {
+	render.RenderData(w, "register.page.gohtml", nil)
+}
+
+// Submit : fonction qui renvoi vers le fichier de traitement du formulaire
+func Submit(w http.ResponseWriter, r *http.Request) {
+	sql.FormName(w, r)
+}

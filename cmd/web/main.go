@@ -19,6 +19,8 @@ func main() {
 	http.HandleFunc("/reservation", handlers.Reservation)
 	http.HandleFunc("/events", handlers.Events)
 	http.HandleFunc("/login", handlers.Login)
+	http.HandleFunc("/register", handlers.Register)
+	http.HandleFunc("/submit", handlers.Submit)
 
 	// Start the server on port 8080
 	fmt.Println(fmt.Sprintf("Démarage du serveur sur le port %s", portNumber))
