@@ -104,7 +104,7 @@ func VerifyLogin(w http.ResponseWriter, r *http.Request) {
 		// si result est vide, retour à la page de connexion avec un message d'erreur
 		if !result.Next() {
 			// Mettre le message d'erreur dans la structure LoginData
-			loginData.Message = "L'adresse email ou le mot de passe est incorrect"
+			loginData.Message = "L'adresse email et / ou le mot de passe est incorrect"
 			// Afficher la page de connexion avec le message d'erreur
 			render.RenderData(w, "login.page.gohtml", loginData)
 			return
