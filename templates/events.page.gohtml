@@ -3,86 +3,19 @@
 {{define "content"}}
 <h2>Liste des évènements</h2>
 
-<div class="container-fluid">
+    <div class="container-fluid">
         {{range .}}
-            {{if eq .EventCategory "web"}}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">{{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
+            <div class="row">
+                <div class="col-md-12 mx-auto">
+                    <div class="card">
+                        <div class="card-header">{{.EventCategory}} - {{.EventTitle}}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{.EventDescription}}</p>
+                            <a href="/event/{{.EventID}}" class="btn btn-primary">Détails de l'évènement</a>
                         </div>
                     </div>
                 </div>
-
-            {{else if eq .EventCategory "network"}}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">{{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {{else if eq .EventCategory "programming"}}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">{{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {{else if eq .EventCategory "hardware"}}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">{{.EventCategory}}<i class="bi bi-code-slash"></i>{{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {{else if eq .EventCategory "security"}}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">{{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {{else}}
-                <div class="row">
-                    <div class="col-md-12 mx-auto">
-                        <div class="card">
-                            <div class="card-header">{{.EventCategory}} {{.EventTitle}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{.EventDescription}}</p>
-                                <a href="/event/{{.EventID}}" class="btn btn-primary">Voir l'évènement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{end}}
+            </div>
         {{end}}
     </div>
 {{end}}

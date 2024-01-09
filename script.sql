@@ -29,7 +29,7 @@ CREATE TABLE events (
     event_id INT NOT NULL AUTO_INCREMENT,
     host VARCHAR(255) NOT NULL,
     room_name VARCHAR(255) NOT NULL,
-    event_certificate INT NOT NULL,
+    event_certificate VARCHAR(255) DEFAULT NULL,
     event_title VARCHAR(255) NOT NULL,
     event_category VARCHAR(255) NOT NULL,
     event_description VARCHAR(255) NOT NULL,
@@ -49,16 +49,10 @@ INSERT INTO users (firstname, lastname, email, pwd, account_status, scope, token
 
 -- create 10 random rooms in the database
 
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room1', 'room1', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room2', 'room2', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room3', 'room3', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room4', 'room4', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room5', 'room5', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room6', 'room6', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room7', 'room7', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room8', 'room8', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room9', 'room9', 1, 10);
-INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('room10', 'room10', 1, 10);
+INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('A07', 'Salle de réunion site:Nation 1', 1, 10);
+INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('B12', 'Salle de cours site: Nation 1', 1, 10);
+INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('Salle 15', 'Salle de cours site: Érard', 1, 10);
+INSERT INTO rooms (room_name, room_description, room_status, room_capacity) VALUES ('Salle 12', 'Salle de cours site: Érard', 1, 10);
 
 
 -- create 10 random events in the database

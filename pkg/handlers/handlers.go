@@ -3,6 +3,7 @@ package handlers
 import (
 	"booking/pkg/render"
 	"booking/pkg/sql"
+	"fmt"
 	"net/http"
 )
 
@@ -18,7 +19,7 @@ func About(w http.ResponseWriter, r *http.Request) {
 
 // Login : fonction d'affichage de la page web "Connexion"
 func Login(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "login.page.gohtml")
+	render.RenderTemplate(w, "login.form.gohtml")
 }
 
 // Reservation : fonction d'affichage de la page web "Réservations" (avec récupération des données de la base de données)
@@ -35,17 +36,27 @@ func Reservation(w http.ResponseWriter, r *http.Request) {
 func Events(w http.ResponseWriter, r *http.Request) {
 	events, err := sql.GetEvents()
 	if err != nil {
-		http.Error(w, "Erreur lors de la récupération des événements", http.StatusInternalServerError)
+		http.Error(w, "Erreur lors de la récupération des salles", http.StatusInternalServerError)
 		return
 	}
 	render.RenderData(w, "events.page.gohtml", events)
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {
-	render.RenderData(w, "register.page.gohtml", nil)
+	render.RenderData(w, "register.form.gohtml", nil)
 }
 
 // Submit : fonction qui renvoi vers le fichier de traitement du formulaire
 func Submit(w http.ResponseWriter, r *http.Request) {
 	sql.FormName(w, r)
+}
+
+// NewEvent : fonction d'affichage de la page web "Nouvel événement" (avec récupération des données de la base de données)
+func NewEvent(w http.ResponseWriter, r *http.Request) {
+	rooms, err := sql.GetRooms()
+	if err != nil {
+		fmt.Print("Erreur lors de la récupération des événements : ", err)
+		return
+	}
+	render.RenderData(w, "new-event.form.gohtml", rooms)
 }

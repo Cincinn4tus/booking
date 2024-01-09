@@ -5,6 +5,11 @@
 {{end}}
 
 {{define "content"}}
+    {{if .Message}}
+        <div class="alert alert-success text-center" role="alert">
+            {{.Message}}
+        </div>
+    {{end}}
     <div id="main">
         <div class="white-wrapper">
             <h1 class="row">

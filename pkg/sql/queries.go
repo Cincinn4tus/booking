@@ -1,6 +1,7 @@
 package sql
 
 import (
+	"fmt"
 	"log"
 )
 
@@ -10,6 +11,9 @@ type Room struct {
 	RoomName        string
 	RoomDescription string
 	RoomStatus      bool
+	RoomCapacity    int
+	RoomTitle       string
+	Message         string
 }
 
 // GetRooms récupère la liste des salles
@@ -19,14 +23,14 @@ func GetRooms() ([]Room, error) {
 	db := InitDB()
 	defer db.Close()
 
-	stmt, err := db.Prepare("SELECT room_id, room_name, room_description, room_status FROM rooms WHERE room_status = ?")
+	stmt, err := db.Prepare("SELECT * FROM rooms")
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
 	}
 	defer stmt.Close()
 
-	rows, err := stmt.Query(true)
+	rows, err := stmt.Query()
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
@@ -34,9 +38,9 @@ func GetRooms() ([]Room, error) {
 
 	for rows.Next() {
 		var room Room
-		err := rows.Scan(&room.RoomID, &room.RoomName, &room.RoomDescription, &room.RoomStatus)
+		err := rows.Scan(&room.RoomID, &room.RoomName, &room.RoomDescription, &room.RoomStatus, &room.RoomCapacity)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Print("Erreur lors de la récupération des salles : ", err)
 			return nil, err
 		}
 		rooms = append(rooms, room)
@@ -45,30 +49,12 @@ func GetRooms() ([]Room, error) {
 	return rooms, nil
 }
 
-/* 	script of the table events :
-CREATE TABLE events (
-    event_id INT NOT NULL AUTO_INCREMENT,
-    host VARCHAR(255) NOT NULL,
-    room_name VARCHAR(255) NOT NULL,
-    event_certificate INT NOT NULL,
-    event_title VARCHAR(255) NOT NULL,
-    event_category VARCHAR(255) NOT NULL,
-    event_description VARCHAR(255) NOT NULL,
-    begin_date DATE NOT NULL, -- format: YYYY-MM-DD
-    end_date DATE NOT NULL, -- format: YYYY-MM-DD
-    begin_hour TIME NOT NULL, -- format: HH:MM:SS
-    end_hour TIME NOT NULL, -- format: HH:MM:SS
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (event_id)
-);	*/
-
 // Event représente un événement
 type Event struct {
 	EventID          int
 	Host             string
 	RoomName         string
-	EventCertificate int
+	EventCertificate string
 	EventTitle       string
 	EventCategory    string
 	EventDescription string
@@ -85,7 +71,7 @@ func GetEvents() ([]Event, error) {
 	db := InitDB()
 	defer db.Close()
 
-	stmt, err := db.Prepare("SELECT event_id, host, room_name, event_certificate, event_title, event_category, event_description, begin_date, end_date, begin_hour, end_hour FROM events")
+	stmt, err := db.Prepare("SELECT event_id, host, room_name,  event_title, event_category, event_description, begin_date, end_date, begin_hour, end_hour FROM events")
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
@@ -100,7 +86,7 @@ func GetEvents() ([]Event, error) {
 
 	for rows.Next() {
 		var event Event
-		err := rows.Scan(&event.EventID, &event.Host, &event.RoomName, &event.EventCertificate, &event.EventTitle, &event.EventCategory, &event.EventDescription, &event.BeginDate, &event.EndDate, &event.BeginHour, &event.EndHour)
+		err := rows.Scan(&event.EventID, &event.Host, &event.RoomName, &event.EventTitle, &event.EventCategory, &event.EventDescription, &event.BeginDate, &event.EndDate, &event.BeginHour, &event.EndHour)
 		if err != nil {
 			log.Fatal(err)
 			return nil, err
