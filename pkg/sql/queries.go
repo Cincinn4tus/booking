@@ -54,7 +54,6 @@ type Event struct {
 	EventID          int
 	Host             string
 	RoomName         string
-	EventCertificate string
 	EventTitle       string
 	EventCategory    string
 	EventDescription string

@@ -2,16 +2,45 @@
 
 {{define "content"}}
 <h2>Liste des évènements</h2>
-
-    <div class="container-fluid">
+    <div class="container">
         {{range .}}
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="card">
-                        <div class="card-header">{{.EventCategory}} - {{.EventTitle}}</div>
+                        <div class="card-header">{{.EventCategory}} - <b>{{.EventTitle}}</b></div>
                         <div class="card-body">
-                            <p class="card-text">{{.EventDescription}}</p>
-                            <a href="/event/{{.EventID}}" class="btn btn-primary">Détails de l'évènement</a>
+                            <p class="card-text">{{.RoomName}}</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event-{{.EventID}}">
+                                Détails de l'évènement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade modal-fullscreen-sm-down" id="event-{{.EventID}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">{{.EventTitle}}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           Catégorie : {{.EventCategory}}<br>
+                            <hr>
+                            <p>
+                               {{.EventDescription}}
+                            </p>
+                            <p><br>
+                                <p>
+                                    Du {{.BeginDate}} à {{.BeginHour}} <br> Au {{.EndDate}} à {{.EndHour}} <br>
+                                    {{.RoomName}} <br>
+                                    Intervenant : {{.Host}}
+                                </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
