@@ -1,3 +1,8 @@
+/**********************************************************************************************************************
+ * Fichier form-requests.go
+ * Ce fichier contient les fonctions de vérification des données des formulaires
+ *********************************************************************************************************************/
+
 package sql
 
 import (
@@ -70,6 +75,7 @@ func VerifyRegister(w http.ResponseWriter, r *http.Request) {
 
 /**********************************************************************************************************************
  * Fonction VerifyLogin : vérification des données du formulaire de connexion
+⚠️ Persistence de la connexion non fonctionnelle (on a oublié qu'il y a pas de variables de session en go)
 **********************************************************************************************************************/
 
 func VerifyLogin(w http.ResponseWriter, r *http.Request) {
@@ -170,6 +176,7 @@ func VerifyNewEvent(w http.ResponseWriter, r *http.Request) {
 
 /**********************************************************************************************************************
  * Fonction EditEvent : modification des données d'un événement
+⚠️ Non implémentée (elle devait servir à modifier les données d'un événement)
 **********************************************************************************************************************/
 
 func EditEvent(w http.ResponseWriter, r *http.Request) {

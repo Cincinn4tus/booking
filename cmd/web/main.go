@@ -14,6 +14,7 @@ func main() {
 	staticFileHandler := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandler))
 
+	// Définition des routes
 	http.HandleFunc("/", handlers.Home)
 	http.HandleFunc("/about", handlers.About)
 	http.HandleFunc("/reservation", handlers.Reservation)
@@ -25,7 +26,7 @@ func main() {
 	http.HandleFunc("/edit-event", handlers.EditEvent)
 	http.HandleFunc("/delete-event", handlers.DeleteEvent)
 
-	// Start the server on port 8080
+	// Démarage du serveur sur le port 8080
 	fmt.Println(fmt.Sprintf("Démarage du serveur sur le port %s", portNumber))
 	_ = http.ListenAndServe(portNumber, nil)
 }

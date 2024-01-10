@@ -1,5 +1,5 @@
 /*******************************************************************************************************
- * Render.go : fichier qui permet d'afficher les pages HTML
+ * Render.go : fichier qui permet d'afficher les pages HTML et enregistre les templates dans un cache
  *******************************************************************************************************/
 
 package render

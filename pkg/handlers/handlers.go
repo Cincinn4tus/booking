@@ -1,3 +1,8 @@
+/**********************************************************************************************************************************************************
+									HANDLERS
+Ce fichier contient les fonctions qui vont être appelées par le serveur pour afficher les pages web.
+*********************************************************************************************************************************************************/
+
 package handlers
 
 import (
@@ -43,6 +48,7 @@ func Events(w http.ResponseWriter, r *http.Request) {
 	render.RenderData(w, "events.page.gohtml", events)
 }
 
+// Register : fonction d'affichage de la page web "Inscription"
 func Register(w http.ResponseWriter, r *http.Request) {
 	render.RenderData(w, "register.form.gohtml", nil)
 }
@@ -62,7 +68,7 @@ func NewEvent(w http.ResponseWriter, r *http.Request) {
 	render.RenderData(w, "new-event.form.gohtml", rooms)
 }
 
-// EditEvent : fonction d'affichage de la page web "Modifier un événement" (avec récupération des données de la base de données)
+// EditEvent : fonction d'affichage de la page web "Modifier un événement"
 func EditEvent(w http.ResponseWriter, r *http.Request) {
 	eventId := r.URL.Query().Get("id")
 	// parser eventId en int

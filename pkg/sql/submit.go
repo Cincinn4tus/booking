@@ -1,12 +1,15 @@
 package sql
 
-import (
-	"net/http"
-)
+import "net/http"
+
+/*
+**********************************************************************************************************************
+Toutes les fonctions de vérification des données des formulaires sont regroupées dans ce fichier. En fonction du nom du formulaire,
+la fonction va appeler la fonction de vérification correspondante.
+***********************************************************************************************************************/
 
 func FormName(w http.ResponseWriter, r *http.Request) {
 	form := r.FormValue("formName")
-
 	switch form {
 	case "register":
 		VerifyRegister(w, r)
@@ -14,7 +17,6 @@ func FormName(w http.ResponseWriter, r *http.Request) {
 		VerifyLogin(w, r)
 	case "new-event":
 		VerifyNewEvent(w, r)
-
 	}
 }
 
