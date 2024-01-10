@@ -4,17 +4,25 @@
 <h2>Liste des évènements</h2>
     <div class="container">
         {{range .}}
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-12 mx-auto">
                     <div class="card">
-                        <div class="card-header">{{.EventCategory}} - <b>{{.EventTitle}}</b></div>
+                        <div class="card-header">{{.EventCategory}}</div>
                         <div class="card-body">
-                            <p class="card-text">{{.RoomName}}</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event-{{.EventID}}">
-                                Détails de l'évènement
-                            </button>
+                            <b>{{.EventTitle}}</b>
+                            <p class="card-text">Salle {{.RoomName}}</p>
                         </div>
                     </div>
+                    <div class="card-footer mt-1 mb-1">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event-{{.EventID}}">
+                            Détails de l'évènement
+                        </button>
+                        <a type="button" class="btn btn-secondary" href="/edit-event?id={{.EventID}}">
+                            Modifier
+                        </a>
+                        <button type="button" class="btn btn-danger">
+                            Supprimer
+                        </button>
                 </div>
             </div>
             <!-- Modal -->

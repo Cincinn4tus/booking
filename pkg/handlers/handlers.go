@@ -60,3 +60,13 @@ func NewEvent(w http.ResponseWriter, r *http.Request) {
 	}
 	render.RenderData(w, "new-event.form.gohtml", rooms)
 }
+
+// EditEvent : fonction d'affichage de la page web "Modifier un événement" (avec récupération des données de la base de données)
+func EditEvent(w http.ResponseWriter, r *http.Request) {
+	events, err := sql.GetEvents()
+	if err != nil {
+		fmt.Print("Erreur lors de la récupération des événements : ", err)
+		return
+	}
+	render.RenderData(w, "modify-event.form.gohtml", events)
+}

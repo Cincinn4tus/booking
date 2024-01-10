@@ -5,11 +5,6 @@ import (
 )
 
 func FormName(w http.ResponseWriter, r *http.Request) {
-	// vérification de la méthode HTTP
-	if r.Method != http.MethodPost {
-		http.Error(w, "Mauvaise méthode HTTP", http.StatusMethodNotAllowed)
-		return
-	}
 	form := r.FormValue("formName")
 
 	switch form {
@@ -19,6 +14,7 @@ func FormName(w http.ResponseWriter, r *http.Request) {
 		VerifyLogin(w, r)
 	case "new-event":
 		VerifyNewEvent(w, r)
+
 	}
 }
 

@@ -167,3 +167,11 @@ func VerifyNewEvent(w http.ResponseWriter, r *http.Request) {
 	// Affichage de la page d'accueil avec le message de succès
 	render.RenderData(w, "home.page.gohtml", eventData)
 }
+
+/**********************************************************************************************************************
+ * Fonction EditEvent : modification des données d'un événement
+**********************************************************************************************************************/
+
+func EditEvent(w http.ResponseWriter, r *http.Request) {
+
+}

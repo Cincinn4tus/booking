@@ -3,6 +3,7 @@ package sql
 import (
 	"fmt"
 	"log"
+	"net/http"
 )
 
 // Room représente une salle
@@ -78,6 +79,40 @@ func GetEvents() ([]Event, error) {
 	defer stmt.Close()
 
 	rows, err := stmt.Query()
+	if err != nil {
+		log.Fatal(err)
+		return nil, err
+	}
+
+	for rows.Next() {
+		var event Event
+		err := rows.Scan(&event.EventID, &event.Host, &event.RoomName, &event.EventTitle, &event.EventCategory, &event.EventDescription, &event.BeginDate, &event.EndDate, &event.BeginHour, &event.EndHour)
+		if err != nil {
+			log.Fatal(err)
+			return nil, err
+		}
+		events = append(events, event)
+	}
+
+	return events, nil
+}
+
+// DisplayEvent pour afficher les informations de l'évènement sélectionné dont l'id est passé en paramètre de l'URL
+func ModifyEvent(r *http.Request) ([]Event, error) {
+	var events []Event
+
+	db := InitDB()
+	defer db.Close()
+
+	stmt, err := db.Prepare("SELECT * FROM events WHERE event_id = ?")
+	if err != nil {
+		log.Fatal(err)
+		return nil, err
+	}
+	defer stmt.Close()
+
+	// Requête avec l'id dans l'URL
+	rows, err := stmt.Query(r.URL.Query().Get("id"))
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
