@@ -151,8 +151,3 @@ func DeleteEvent(r *http.Request, eventId int) error {
 	}
 	return nil
 }
-
-/***********************************************************************************************************************
-
-// VerifyRegister : fonction de vérification des données du formulaire d'inscription
-*/
