@@ -5,6 +5,7 @@ import (
 	"booking/pkg/sql"
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 // Home : fonction d'affichage de la page web "Accueil"
@@ -63,10 +64,30 @@ func NewEvent(w http.ResponseWriter, r *http.Request) {
 
 // EditEvent : fonction d'affichage de la page web "Modifier un événement" (avec récupération des données de la base de données)
 func EditEvent(w http.ResponseWriter, r *http.Request) {
-	events, err := sql.GetEvents()
+	eventId := r.URL.Query().Get("id")
+	// parser eventId en int
+	intEventId, err := strconv.Atoi(eventId)
+
+	fmt.Println("Valeur de l'id en int : ", intEventId)
+	event, err := sql.ModifyEvent(intEventId)
 	if err != nil {
 		fmt.Print("Erreur lors de la récupération des événements : ", err)
 		return
 	}
-	render.RenderData(w, "modify-event.form.gohtml", events)
+	render.RenderData(w, "modify-event.form.gohtml", event)
+}
+
+// DeleteEvent : fonction de suppression d'un événement
+func DeleteEvent(w http.ResponseWriter, r *http.Request) {
+	eventId := r.URL.Query().Get("id")
+	// parser eventId en int
+	intEventId, err := strconv.Atoi(eventId)
+
+	fmt.Println("Valeur de l'id en int : ", intEventId)
+	err = sql.DeleteEvent(r, intEventId)
+	if err != nil {
+		fmt.Print("Erreur lors de la suppression de l'événement : ", err)
+		return
+	}
+	http.Redirect(w, r, "/events", http.StatusSeeOther)
 }

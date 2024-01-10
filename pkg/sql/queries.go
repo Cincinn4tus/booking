@@ -62,6 +62,8 @@ type Event struct {
 	EndDate          string
 	BeginHour        string
 	EndHour          string
+	Created_at       string
+	Updated_at       string
 }
 
 // GetEvents récupère la liste des événements
@@ -97,22 +99,21 @@ func GetEvents() ([]Event, error) {
 	return events, nil
 }
 
-// DisplayEvent pour afficher les informations de l'évènement sélectionné dont l'id est passé en paramètre de l'URL
-func ModifyEvent(r *http.Request) ([]Event, error) {
+// GetOneEvent récupère la liste des événements
+func ModifyEvent(eventId int) ([]Event, error) {
 	var events []Event
 
 	db := InitDB()
 	defer db.Close()
 
-	stmt, err := db.Prepare("SELECT * FROM events WHERE event_id = ?")
+	stmt, err := db.Prepare("SELECT event_id, host, room_name,  event_title, event_category, event_description, begin_date, end_date, begin_hour, end_hour FROM events WHERE event_id = ?")
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
 	}
 	defer stmt.Close()
 
-	// Requête avec l'id dans l'URL
-	rows, err := stmt.Query(r.URL.Query().Get("id"))
+	rows, err := stmt.Query(eventId)
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
@@ -130,3 +131,28 @@ func ModifyEvent(r *http.Request) ([]Event, error) {
 
 	return events, nil
 }
+
+// DeleteEvent pour supprimer un évènement dont l'id est passé en paramètre de la fonction
+func DeleteEvent(r *http.Request, eventId int) error {
+	db := InitDB()
+	defer db.Close()
+
+	stmt, err := db.Prepare("DELETE FROM events WHERE event_id = ?")
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(eventId)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+	return nil
+}
+
+/***********************************************************************************************************************
+
+// VerifyRegister : fonction de vérification des données du formulaire d'inscription
+*/

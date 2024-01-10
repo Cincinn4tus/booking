@@ -10,17 +10,16 @@
     </h1>
 
 
-
     <div class="container mt-5">
         <form action="/submit" method="post" class="col-4 mx-auto mt-5" id="new-event">
             <input type="hidden" id="formName" name="formName" value="modify-event">
-            <input type="text" id="title" name="title" placeholder="Titre de l'évènement" required="required" class="form-control" value="{{.Event.Title}}"><br>
-            <input type="text" id="category" name="category" placeholder="Catégorie" required="required" class="form-control" value="{{.Event.Category}}"><br>
-            <input type="text" id="description" name="description" placeholder="Description" required="required" class="form-control" value="{{.Event.Description}}"><br>
-            <input type="text" id="begin_date" name="begin_date" placeholder="Date de début" required="required" class="form-control" value="{{.Event.BeginDate}}"><br>
-            <input type="time" id="begin_hour" name="begin_hour" placeholder="Heure de début" required="required" class="form-control" value="{{.Event.BeginHour}}"><br>
-            <input type="text" id="end_date" name="end_date" placeholder="Date de fin" required="required" class="form-control" value="{{.Event.EndDate}}"><br>
-            <input type="time" id="end_hour" name="end_hour" placeholder="Heure de fin" required="required" class="form-control" value="{{.Event.EndHour}}"><br>
+            <input type="text" id="title" name="title" placeholder="Titre de l'évènement" required="required" class="form-control" value="{{.EventTitle}}"><br>
+            <input type="text" id="category" name="category" placeholder="Catégorie" required="required" class="form-control" value="{{.EventCategory}}"><br>
+            <input type="text" id="description" name="description" placeholder="Description" required="required" class="form-control" value="{{.EventDescription}}"><br>
+            <input type="text" id="begin_date" name="begin_date" placeholder="Date de début" required="required" class="form-control" value="{{.EventBeginDate}}"><br>
+            <input type="time" id="begin_hour" name="begin_hour" placeholder="Heure de début" required="required" class="form-control" value="{{.EventBeginHour}}"><br>
+            <input type="text" id="end_date" name="end_date" placeholder="Date de fin" required="required" class="form-control" value="{{.EventEndDate}}"><br>
+            <input type="time" id="end_hour" name="end_hour" placeholder="Heure de fin" required="required" class="form-control" value="{{.EventEndHour}}"><br>
 
 
             <label for="room">Salle</label>
